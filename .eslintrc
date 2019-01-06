@@ -1,0 +1,29 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true,
+    "jasmine": true
+  },
+  "plugins": ["jasmine", "flowtype"],
+  "extends": ["eslint:recommended", "plugin:flowtype/recommended"],
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "rules": {
+    quotes: ["error", "single"],
+    quote-props: ["error", "as-needed"],
+    "semi": 2,
+    "padded-blocks": ["error","never"],
+    eqeqeq: 2,
+  },
+  "settings": {
+    "flowtype": {
+      "onlyFilesWithFlowAnnotation": true
+    }
+  }
+}

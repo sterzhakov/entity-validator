@@ -1,0 +1,46 @@
+{
+  "name": "entity-validator",
+  "version": "1.0.0",
+  "description": "Simple object validator",
+  "main": "build/index.js",
+  "scripts": {
+    "test": "flow-node build/test",
+    "eslint": "node node_modules/eslint/bin/eslint.js",
+    "transpile-production": "babel src --out-dir ./build --copy-files"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sterzhakov/entity-validator.git"
+  },
+  "dependencies": {
+    "berries": "^1.2.2"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.0",
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-transform-flow-strip-types": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-source-map-support": "^2.0.1",
+    "eslint": "^5.10.0",
+    "eslint-plugin-flowtype": "^3.2.0",
+    "eslint-plugin-jasmine": "^2.10.1",
+    "flow-bin": "^0.88.0",
+    "flow-node": "^1.2.3",
+    "flow-remove-types": "^1.2.3",
+    "form-data": "^2.3.2",
+    "jasmine": "^3.3.0"
+  },
+  "keywords": [
+    "validator",
+    "validate",
+    "validation"
+  ],
+  "author": "Igor Sterzhakov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sterzhakov/entity-validator/issues"
+  },
+  "homepage": "https://github.com/sterzhakov/entity-validator#readme"
+}
