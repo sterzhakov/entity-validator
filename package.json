@@ -4,9 +4,9 @@
   "description": "Simple object validator",
   "main": "build/index.js",
   "scripts": {
-    "test": "flow-node build/test",
+    "test": "flow-node node_modules/jasmine/bin/jasmine.js",
     "eslint": "node node_modules/eslint/bin/eslint.js",
-    "transpile-production": "babel src --out-dir ./build --copy-files"
+    "build": "babel src --out-dir ./build --copy-files"
   },
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "@babel/preset-flow": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-source-map-support": "^2.0.1",
-    "eslint": "^5.10.0",
+    "eslint": "^5.12.0",
     "eslint-plugin-flowtype": "^3.2.0",
     "eslint-plugin-jasmine": "^2.10.1",
     "flow-bin": "^0.88.0",
