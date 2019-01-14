@@ -2,7 +2,7 @@
 const validate = require('../validate');
 
 describe('core/context/createValidate/validate', () => {
-  it('create matcherErrors by translate, entity, matchers, ' +
+  it('create matchersErrors by translate, entity, matchers, ' +
   'validators, validatorKey, validatorParams', async () => {
     const presenceMatcher = {
       key: 'presence',
@@ -35,36 +35,30 @@ describe('core/context/createValidate/validate', () => {
       return value.match('@') ? null : {};
     };
 
-    const { validatorMatchersErrors } =
+    const { matchersErrors } =
       await validate({
         entity: {
           name: 'Igor',
           email: 'sterjakov!icloud.com',
         },
-        validatorKey: 'human',
-        validators: [
+        attributes: [
           {
-            key: 'human',
-            createAttributes: (params) => [
+            key: 'name',
+            rules: [ 'presence' ],
+          },
+          {
+            key: 'gender',
+            rules: [ 'presence' ],
+          },
+          {
+            key: 'email',
+            rules: [
               {
-                key: 'name',
-                rules: [ 'presence' ],
+                key: 'custom',
+                params: {
+                  check: checkEmail,
+                }
               },
-              {
-                key: 'gender',
-                rules: [ 'presence' ],
-              },
-              {
-                key: 'email',
-                rules: [
-                  {
-                    key: 'custom',
-                    params: {
-                      check: params.checkEmail,
-                    }
-                  },
-                ],
-              }
             ],
           }
         ],
@@ -73,37 +67,22 @@ describe('core/context/createValidate/validate', () => {
             return string.replace(paramKey, params[paramKey]);
           }, string);
         },
-        validatorParams: {
-          checkEmail,
-        },
         matchers: [
           presenceMatcher,
           customMatcher,
         ],
       });
 
-    expect(validatorMatchersErrors).toEqual([
+    expect(matchersErrors).toEqual([
       {
-        matcher: {
-          ...presenceMatcher,
-          attribute: 'gender',
-          params: {}
-        },
-        checkResult: { $variable: 'text' },
-        message: 'Example text',
         key: 'presence',
-        attribute: 'gender'
+        attribute: 'gender',
+        checkResult: { $variable: 'text' },
       },
       {
-        matcher: {
-          ...customMatcher,
-          attribute: 'email',
-          params: { check: checkEmail },
-        },
-        checkResult: { $variable: 'text' },
-        message: 'Example text',
         key: 'custom',
-        attribute: 'email'
+        attribute: 'email',
+        checkResult: { $variable: 'text' },
       },
     ]);
   });

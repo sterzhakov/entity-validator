@@ -1,9 +1,9 @@
 // @flow
-const createValidatorMatchers = require('../createValidatorMatchers');
+const createEntityMatchers = require('../createEntityMatchers');
 
-describe('core/context/createValidate/createValidatorMatchers', () => {
-  it('create validatorMatchers by validatorRules and matchers', () => {
-    const validatorRules = [
+describe('core/context/createValidate/createEntityMatchers', () => {
+  it('create entityMatchers by attributesRules and matchers', () => {
+    const attributesRules = [
       { key: 'string', attribute: 'name', params: { a: 'a' } },
       { key: 'presence', attribute: 'name', params: { a: 'a' } },
     ];
@@ -17,10 +17,10 @@ describe('core/context/createValidate/createValidatorMatchers', () => {
       },
     ];
 
-    const { validatorMatchers } =
-      createValidatorMatchers({ validatorRules, matchers });
+    const { entityMatchers } =
+      createEntityMatchers({ attributesRules, matchers });
 
-    expect(validatorMatchers).toEqual([{
+    expect(entityMatchers).toEqual([{
         ...matchers[0],
         attribute: 'name',
         params: { a: 'a', b: 'b' },

@@ -2,7 +2,7 @@
   "name": "entity-validator",
   "version": "1.0.0",
   "description": "Simple object validator",
-  "main": "build/index.js",
+  "main": "build/validate.js",
   "scripts": {
     "test": "flow-node node_modules/jasmine/bin/jasmine.js",
     "eslint": "node node_modules/eslint/bin/eslint.js",

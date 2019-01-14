@@ -6,11 +6,6 @@ export type Entity = { [string]: any };
 export type CheckResult = null | { [string]: any };
 export type CheckParams = { [string]: any };
 
-export type Validator = {
-  key: string,
-  createAttributes: ({ [string]: mixed }) => Array<Attribute>
-};
-
 export type Attribute = {
   key: string,
   rules: Array<string | Rule>,
@@ -24,79 +19,60 @@ export type Rule = {
 
 export type Matcher = {
   key: string | null,
-  params?: CheckParams,
-  attribute?: string,
   check: (
     enity: Entity | null,
     attribute: string | null,
     CheckParams,
   ) => CheckResult | Promise<CheckResult>,
-  message: (translate: Translate, checkResult: {[string]: mixed}) => string,
+  params?: CheckParams,
+  attribute?: string,
 };
 
 export type MatcherError = {
   key: string | null,
   attribute: string | null,
-  message: string,
-  matcher: Matcher,
 };
 
 
-export type CreateValidatorAttributesParams = {
-  validators: Array<Validator>,
-  validatorKey: string,
-  validatorParams: { [string]: mixed },
-  [string]: any,
-}
-export type CreateValidatorAttributesResult =
-  {
-    ...CreateValidatorAttributesParams,
-    validatorAttributes: Array<Attribute>,
-  };
-export type CreateValidatorAttributes =
-  (CreateValidatorAttributesParams) => CreateValidatorAttributesResult;
-
-
-export type CreateValidatorRulesParams = {
-  validatorAttributes: Array<Attribute>,
+export type CreateRulesParams = {
+  attributes: Array<Attribute>,
   [string]: any,
 };
-export type CreateValidatorRulesResult = CreateValidatorRulesParams & {
-  validatorRules: Array<Rule>,
+export type CreateRulesResult = CreateRulesParams & {
+  attributesRules: Array<Rule>,
 };
-export type CreateValidatorRules =
-  (CreateValidatorRulesParams) => CreateValidatorRulesResult;
+export type CreateRules =
+  (CreateRulesParams) => CreateRulesResult;
 
-export type CreateValidatorMatchersParams = {
-  validatorRules: Array<Rule>,
+
+export type CreateEntityMatchersParams = {
+  attributesRules: Array<Rule>,
   matchers: Array<Matcher>,
   [string]: any,
 };
-export type CreateValidatorMatchersResult = CreateValidatorMatchersParams & {
-  validatorMatchers: Array<Matcher>
+export type CreateEntityMatchersResult = CreateEntityMatchersParams & {
+  entityMatchers: Array<Matcher>
 };
-export type CreateValidatorMatchers =
-  (CreateValidatorMatchersParams) => CreateValidatorMatchersResult;
+export type CreateEntityMatchers =
+  (CreateEntityMatchersParams) => CreateEntityMatchersResult;
+
 
 export type CreateValdiatorErrorsParams = {
   entity: Entity,
-  validatorMatchers: Array<Matcher>,
-  translate: Translate,
+  entityMatchers: Array<Matcher>,
   [string]: any,
 }
-export type CreateValidatorMatchersErrorsResult =
+export type CreateMatchersErrorsResult =
   Promise<CreateValdiatorErrorsParams & {
-    validatorMatchersErrors: Array<MatcherError>,
+    matchersErrors: Array<MatcherError>,
   }>;
-export type CreateValidatorMatchersErrors =
-  (CreateValdiatorErrorsParams) => CreateValidatorMatchersErrorsResult;
+export type CreateMatchersErrors =
+  (CreateValdiatorErrorsParams) => CreateMatchersErrorsResult;
+
 
 export type Validate = ({
-  translate: Translate,
   entity: Entity,
   matchers: Array<Matcher>,
-  validators: Array<Validator>,
-  validatorKey: string,
-  validatorParams: { [string]: mixed },
+  attributes: Array<Attribute>,
   [string]: mixed,
-}) => CreateValidatorMatchersErrorsResult;
+}) => CreateMatchersErrorsResult;
