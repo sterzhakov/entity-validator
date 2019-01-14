@@ -20,7 +20,7 @@ and attributes rules
 const attributes = [
   {
     key: 'name',
-    rules: [ 'presence' ],
+    rules: [ 'presence' ], // or [ { key: 'presence', params: {} } ]
   },
 ];
 ```
