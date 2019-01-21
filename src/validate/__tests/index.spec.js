@@ -1,7 +1,7 @@
 // @flow
-const validate = require('../validate');
+const validate = require('../index');
 
-describe('core/context/createValidate/validate', () => {
+describe('validate/index', () => {
   it('create matchersErrors by translate, entity, matchers, ' +
   'validators, validatorKey, validatorParams', async () => {
     const presenceMatcher = {

@@ -1,7 +1,7 @@
 // @flow
 const createEntityMatchers = require('../createEntityMatchers');
 
-describe('core/context/createValidate/createEntityMatchers', () => {
+describe('validate/createEntityMatchers', () => {
   it('create entityMatchers by attributesRules and matchers', () => {
     const attributesRules = [
       { key: 'string', attribute: 'name', params: { a: 'a' } },

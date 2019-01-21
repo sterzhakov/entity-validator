@@ -1,7 +1,7 @@
 // @flow
 const createAttributesRules = require('../createAttributesRules');
 
-describe('core/context/createValidate/createAttributesRules', () => {
+describe('validate/createAttributesRules', () => {
   it('create attributesRules by valdiatorAttributes:string', () => {
     const attributes = [
       {

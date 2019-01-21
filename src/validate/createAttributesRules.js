@@ -1,5 +1,5 @@
 // @flow
-import type { CreateRules } from './types';
+import type { CreateRules } from '../types';
 
 const { isString, isObject } = require('./utils');
 

@@ -1,9 +1,12 @@
 // @flow
 
-export type Translate = (path: string, params?: { [string]: any }) => string;
+// validate
+
+export type Translate =
+  (path: string | null, params?: { [string]: any }) => string;
 
 export type Entity = { [string]: any };
-export type CheckResult = null | { [string]: any };
+export type CheckResult = { [string]: any } | null;
 export type CheckParams = { [string]: any };
 
 export type Attribute = {
@@ -31,6 +34,7 @@ export type Matcher = {
 export type MatcherError = {
   key: string | null,
   attribute: string | null,
+  checkResult: { [string]: any },
 };
 
 
@@ -76,3 +80,28 @@ export type Validate = ({
   attributes: Array<Attribute>,
   [string]: mixed,
 }) => CreateMatchersErrorsResult;
+
+// createAttributesByValidator
+
+export type AttributeTemplate = {
+  key: string,
+  rules: Array<string | [ string, { [string]: mixed } ]>,
+};
+
+export type Validator = {
+  key: string,
+  attributes: ({ [string]: any }) => Array<AttributeTemplate>,
+};
+
+export type CreateAttributesByValidator =
+  (Validator, { [string]: mixed }) => Array<Attribute>;
+
+// translateMatchersErrors
+
+export type TranslateMatchersErrors =
+  (
+    Array<MatcherError>,
+    {
+      key: string,
+      translate: Translate,
+    }) => Array<{ ...MatcherError, [string]: string }>;

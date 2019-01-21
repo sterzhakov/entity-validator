@@ -2,7 +2,7 @@
 const createMatchersErrors =
   require('../createMatchersErrors');
 
-describe('core/context/createValidate/createMatchersErrors', () => {
+describe('validate/createMatchersErrors', () => {
   it('create matchersErrors by entityMatchers, entity and translate',
   async () => {
     const entityMatchers = [

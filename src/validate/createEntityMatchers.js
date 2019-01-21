@@ -1,5 +1,5 @@
 // @flow
-import type { CreateEntityMatchers } from './types';
+import type { CreateEntityMatchers } from '../types';
 
 const createEntityMatchers: CreateEntityMatchers = (params) => {
   const { attributesRules, matchers } = params;

@@ -1,10 +1,10 @@
 // @flow
 
-const isString = (item): %checks => {
+const isString = (item: any): %checks => {
   return typeof item === 'string';
 };
 
-const isObject = (item): %checks => {
+const isObject = (item: any): %checks => {
   return typeof item === 'object' && !Array.isArray(item);
 };
 

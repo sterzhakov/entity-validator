@@ -1,5 +1,5 @@
 // @flow
-import type { Validate } from './types';
+import type { Validate } from '../types';
 
 const createAttributesRules = require('./createAttributesRules');
 const createEntityMatchers = require('./createEntityMatchers');

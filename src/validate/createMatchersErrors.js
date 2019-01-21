@@ -1,5 +1,5 @@
 // @flow
-import type { CreateMatchersErrors, MatcherError } from './types';
+import type { CreateMatchersErrors, MatcherError } from '../types';
 
 const B = require('berries');
 
