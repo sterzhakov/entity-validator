@@ -6,10 +6,6 @@ Dead simple sync/async object validation library with focus on custom matchers.
 npm i entity-validator
 ```
 
-```javascript
-const validate = require('entity-validator');
-```
-
 # How to use?
 
 ## validate(params)
@@ -52,6 +48,7 @@ const matchers = [ presenceMatcher ];
 now you can get validation matchers errors!
 
 ```javascript
+const { validate } = require('entity-validator');
 const { matchersErrors } = await validate({ entity, attributes, matchers });
 
 // > matchersErrors
