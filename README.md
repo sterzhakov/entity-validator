@@ -38,7 +38,7 @@ const presenceMatcher = {
   key: 'presence',
   check: (entity, attribute) => {
     if (!attribute || !entity || entity[attribute]) return null;
-    return { messageKey: 'presenseText' };
+    return { messageKey: 'presenceText' };
   },
 };
 
@@ -56,7 +56,7 @@ const { matchersErrors } = await validate({ entity, attributes, matchers });
 //   {
 //     key: 'presence',
 //     attribute: 'name',
-//     checkResult: { messageKey: 'presenseText' },
+//     checkResult: { messageKey: 'presenceText' },
 //   },
 // ]
 ```
@@ -93,38 +93,6 @@ Tranform validator object (groupped attributes) to attributes.
   //     ]
   //   },
   // ]);
-```
-
-
-#### translateMatcherErrors
-Create key for each matcher error with result of translate function
-```javascript
-  const { createAttributesByValidator } = require('entity-valdiator');
-
-  const matchersErrors = [
-    {
-      key: 'presence',
-      attribute: 'name',
-      checkResult: { name: 'world' },
-    },
-  ];
-
-  const translate = (key, params = {}) => {
-    const dictionary = {
-      hello: ({ name }) => `Hello ${name}!`,
-    };
-    return dictionary[key](params);
-  };
-
-  const translatedMatcherErrors =
-    translateMatchersErrors(matchersErrors, { key: 'message', translate });
-
-  // translatedMatcherErrors => [
-  //   {
-  //     ...matchersErrors[0],
-  //     message: 'Hello world!',
-  //   },
-  // ]
 ```
 
 ## Flow types
