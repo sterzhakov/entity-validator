@@ -2,8 +2,11 @@
 
 // validate
 
-export type Translate =
-  (path: string | null, params?: { [string]: any }) => string;
+export type Translations = { +[string]: string | Translations };
+export type Translate = (
+  path: string,
+  params?: { +[string]: string | number }
+) => string;
 
 export type Entity = { [string]: any };
 export type CheckResult = { [string]: any } | null;
@@ -81,7 +84,6 @@ export type Validate = ({
   [string]: mixed,
 }) => CreateMatchersErrorsResult;
 
-// createAttributesByValidator
 
 export type AttributeTemplate = {
   key: string,
@@ -98,10 +100,11 @@ export type CreateAttributesByValidator =
 
 // translateMatchersErrors
 
-export type TranslateMatchersErrors =
+export type TranslateMatchersErrors<T> =
   (
     Array<MatcherError>,
     {
-      key: string,
       translate: Translate,
-    }) => Array<{ ...MatcherError, [string]: string }>;
+      key: T,
+    }
+  ) => Array<{ ...MatcherError, [T]: string }>;
