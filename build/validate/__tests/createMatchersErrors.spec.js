@@ -1,14 +1,16 @@
 const createMatchersErrors = require('../createMatchersErrors');
 
 describe('validate/createMatchersErrors', () => {
-  it('create matchersErrors by entityMatchers, entity and translate', async () => {
+  it('create matchersErrors by entityMatchers, entity', async () => {
     const entityMatchers = [{
       key: 'presence',
-      params: {},
+      params: {
+        id: 'example'
+      },
       attribute: 'name',
-      check: (entity, attribute) => {
+      check: (entity, attribute, params) => {
         if (!attribute) return null;
-        return {};
+        return params;
       }
     }];
     const {
@@ -17,15 +19,14 @@ describe('validate/createMatchersErrors', () => {
       entity: {
         name: 'Igor Sterzhakov'
       },
-      translate: key => {
-        return key;
-      },
       entityMatchers
     });
     expect(matchersErrors).toEqual([{
       key: 'presence',
       attribute: 'name',
-      checkResult: {}
+      checkResult: {
+        id: 'example'
+      }
     }]);
   });
 });

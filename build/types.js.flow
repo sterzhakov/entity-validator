@@ -1,6 +1,10 @@
 // @flow
 
 // validate
+export type EntityValidator = {
+  validate: Validate,
+  createAttributesByValidator: CreateAttributesByValidator,
+};
 
 export type Translations = { +[string]: string | Translations };
 export type Translate = (
@@ -69,10 +73,11 @@ export type CreateValdiatorErrorsParams = {
   entityMatchers: Array<Matcher>,
   [string]: any,
 }
+export type MatchersErrors = {
+  matchersErrors: Array<MatcherError>,
+};
 export type CreateMatchersErrorsResult =
-  Promise<CreateValdiatorErrorsParams & {
-    matchersErrors: Array<MatcherError>,
-  }>;
+  Promise<CreateValdiatorErrorsParams & MatchersErrors>;
 export type CreateMatchersErrors =
   (CreateValdiatorErrorsParams) => CreateMatchersErrorsResult;
 

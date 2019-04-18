@@ -3,16 +3,16 @@ const createMatchersErrors =
   require('../createMatchersErrors');
 
 describe('validate/createMatchersErrors', () => {
-  it('create matchersErrors by entityMatchers, entity and translate',
+  it('create matchersErrors by entityMatchers, entity',
   async () => {
     const entityMatchers = [
       {
         key: 'presence',
-        params: {},
+        params: { id: 'example' },
         attribute: 'name',
-        check: (entity, attribute) => {
+        check: (entity, attribute, params) => {
           if (!attribute) return null;
-          return {};
+          return params;
         },
       },
     ];
@@ -20,7 +20,6 @@ describe('validate/createMatchersErrors', () => {
     const { matchersErrors } =
       await createMatchersErrors({
         entity: { name: 'Igor Sterzhakov' },
-        translate: (key) => { return key; },
         entityMatchers,
       });
 
@@ -28,7 +27,7 @@ describe('validate/createMatchersErrors', () => {
       {
         key: 'presence',
         attribute: 'name',
-        checkResult: {},
+        checkResult: { id: 'example' },
       },
     ]);
   });
